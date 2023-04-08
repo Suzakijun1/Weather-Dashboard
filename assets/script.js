@@ -1,4 +1,4 @@
-var requestUrl = "api.openweathermap.org/data/2.5/forecast?";
+var requestUrl = "https://api.openweathermap.org/data/2.5/forecast?";
 
 var apiKey = "e081906e41053d0045aef1f5836faf73";
 
@@ -22,7 +22,7 @@ var apiKey = "e081906e41053d0045aef1f5836faf73";
       console.log(response);
       return response.json();
     })
-    .then((data) => console.log(response));
+    .then((response) => console.log(response));
   // this.displayWeather(data));
 }),
   (displayWeather = function (data) {
