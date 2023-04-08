@@ -1,23 +1,14 @@
 var requestUrl =
   "https://api.openweathermap.org/data/2.5/forecast/daily?appid=3be2b2b6acc21e3760901d15acf91f72&q=Orlando";
 
-var apiKey = "e081906e41053d0045aef1f5836faf73";
-
 var userInput = document.querySelector("#text-box");
 
 // fetch(requestUrl).then(console.log(data));
 
-fetchForecast = (function (city) {
+function fetchForecast(city) {
+  //will input "userInput" here when I get this working
   var url = requestUrl + "&cnt=6&units=imperial";
 
-  //function (lat, lon) {
-  //   var url = requestUrl + "lat=" + lat;
-
-  //   url += "&lon=" + lon; //+= used to make code look cleaner
-
-  //   url += "&appid=" + apiKey;
-
-  //var url = requestUrl + city + "&units=metric&appid=" + this.apiKey;
   console.log(url);
   fetch(url)
     .then((response) => {
@@ -28,27 +19,32 @@ fetchForecast = (function (city) {
       console.log(response);
       return response.json();
     })
-    .then((response) => console.log(response));
-  // this.displayWeather(data));
-})(
-  (futureWeather = function (data) {
-    //const name = data;
-    //const { icon, description } = data.weather[0];
-    const temp = list[0].temp.day;
-    //const speed = data.wind;
-    $("#Temp0").html(temp);
-    console.log(futureWeather);
-  })
-);
-futureWeather();
-// function getApi() {
-//   var requestUrl =
-//     "api.openweathermap.org/data/2.5/forecast/daily?appid=3be2b2b6acc21e3760901d15acf91f72&q=Dallas&cnt=6&units=imperial";
+    .then((response) => renderForecast(response));
+  // this.futureWeather(data));
+  // $("#Temp0").html(response.main.temp);
+  //console.log(response.main.temp);
+}
 
-//   fetch(requestUrl)
-//     //.then(function (response) {
-//     .then((data) => console.log(data));
-//   return response.json();
-// }
+function renderForecast(forecastData) {
+  $("#future-weather").html(
+    `<div class = "col-sm-2 big-primary forecast">
+                <p id="date0"></p>
+                herouwegroiwageup9eg
+                <p id="Img0"></p>
+                <p>lkjwgeojigweapoi: <span id="Temp0"></span></p>
+                <p>Humidity: <span id="humidity0">hello world</span></p>`
+  );
+  console.log(forecastData.list[0].temp.day);
+}
+
+function futureWeather(data) {
+  //const name = data;
+  //const { icon, description } = data.weather[0];
+  //const temp = list[0].temp.day;
+  //const speed = data.wind;
+  // $("#Temp0").html(temp);
+  console.log("future weather");
+}
+futureWeather();
 
 $("#search-button").on("click", fetchForecast);
