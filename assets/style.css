@@ -7,7 +7,7 @@ main{
     display: flex;
 }
 #search-city-container{
-    background-color: yellow;
+    
     width: 30%;
 }
 #weather-display{
@@ -22,3 +22,7 @@ main{
     width: 70%;
 }
 
+#future-weather {
+    display:flex;
+    flex-wrap: wrap;
+}

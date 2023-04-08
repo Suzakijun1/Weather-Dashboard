@@ -31,7 +31,7 @@ function renderForecast(forecastData) {
   for (var i = 1; i <= 5; i++) {
     //create a div 'forecastCard'
     const forecastCard = document.createElement("div");
-    forecastCard.innerHTML = `<div class = "col-sm-2 big-primary forecast">
+    forecastCard.innerHTML = `<div class = "col-sm-1 forecast">
                   <p id="date0">${new Date(
                     forecastData.list[i].dt * 1000
                   ).toLocaleDateString()}</p>
