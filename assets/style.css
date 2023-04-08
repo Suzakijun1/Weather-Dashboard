@@ -1,8 +1,24 @@
 #search-button {
     width: 250px;
     
+    
+}
+main{
+    display: flex;
+}
+#search-city-container{
+    background-color: yellow;
+    width: 30%;
+}
+#weather-display{
+    background-color: aqua;
+    
+    flex-direction: column;
 }
 
-#search-city-container {
-    max-width: 80%;
+#weather-tab {
+    display: flex;
+    flex-direction:column;
+    width: 70%;
 }
+

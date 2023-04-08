@@ -19,22 +19,44 @@
             </div>
     </header>
     <!--Container for city search-->
-    <div class="container" id="search-city-container">
-        <div class="column">
+    <main>
+        <div id="search-city-container">
+
             <h2>Search for a City:</h2>
             <div class="input-group">
-                <div class="col-5">
 
-                    <input type="text" id="text-box" class="form-control" placeholder="type here">
+
+                <input type="text" id="text-box" class="form-control rounded" placeholder="type here">
+
+                <button id="search-button" type="button" class="btn btn-primary mt-3">Search</button>
+            </div>
+        </div>
+
+        </div>
+        <section id="weather-tab">
+            <div id="weather-display">weather will be here
+                <!-- <h3 class="city-name mb-1 mt-2 bolder" id="current-city"></h3> -->
+                <p class="Temperature"> Temp: </p>
+                <p class="wind"> Wind: </p>
+                <p class="Humidity"> Humidity: </p>
+            </div>
+
+            <div id="5-day-weather">
+                <h3>5-Day Forecast:</h3>
+                <div id="future-weather" class="row ">
+
                 </div>
+            </div>
+        </section>
+    </main>
 
-                <div class="container">
+    <!-- <div class="container">
                     <div class="row">
                         <div class="col-6">
 
                             <button id="search-button" type="button" class="btn btn-primary">Search</button>
                         </div>
-                        <!--Current Weather section-->
+                        
                         <div class="col-sm-8">
                             <div class="row ml-2 border border-dark rounded">
                                 <h3 class="city-name mb-1 mt-2 bolder" id="current-city"></h3>
@@ -42,14 +64,14 @@
                                 <p class="wind"> Wind: </p>
                                 <p class="Humidity"> Humidity: </p>
                             </div>
-                            <!--5-Day Future Weather-->
+                          
                             <div class="col-sm-12" id="5-day-weather">
                                 <h3>5-Day Forecast:</h3>
-                                <div id="future-weather" class="row">
+                                <div id="future-weather" class="row ">
 
                                 </div>
 
-                            </div>
+                            </div> -->
 
 
 </body>
