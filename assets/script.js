@@ -11,7 +11,9 @@ var savedCity = [];
 function fetchForecast(city) {
   //will input "userInput" here when I get this working
   var url = requestUrl + userInput.value + "&cnt=6&units=imperial";
-
+  //clear previous forecast cards
+  futureWeather.innerHTML = "";
+  currentWeather.innerHTML = "";
   console.log(url);
   fetch(url)
     .then((response) => {
