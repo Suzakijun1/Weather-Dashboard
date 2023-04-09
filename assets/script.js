@@ -10,7 +10,7 @@ var savedCity = [];
 
 function fetchForecast(city) {
   //will input "userInput" here when I get this working
-  var url = requestUrl + userInput + "&cnt=6&units=imperial";
+  var url = requestUrl + userInput.value + "&cnt=6&units=imperial";
 
   console.log(url);
   fetch(url)
@@ -31,13 +31,14 @@ function fetchForecast(city) {
         localStorage.setItem("cityname", JSON.stringify(savedCity));
         pastCity(response.city.name);
       }
+      if (savedCity.indexOf(response.city.name) === -1) {
+        savedCity.push(response.city.name);
+        localStorage.setItem("cityname", JSON.stringify(savedCity));
+        pastCity(response.city.name);
+      }
       renderForecast(response);
     })
     .catch((error) => console.log(error));
-
-  // this.futureWeather(data));
-  // $("#Temp0").html(response.main.temp);
-  //console.log(response.main.temp);
 }
 
 const currentWeather = document.querySelector("#weather-display");
@@ -45,7 +46,7 @@ const currentWeather = document.querySelector("#weather-display");
 const futureWeather = document.querySelector("#future-weather");
 
 function renderForecast(forecastData) {
-  futureWeather.html = ``;
+  futureWeather.innerHTML = ``;
   for (var i = 1; i <= 5; i++) {
     //create a div 'forecastCard'
     const forecastCard = document.createElement("div");
@@ -64,7 +65,7 @@ function renderForecast(forecastData) {
   renderCurrent(forecastData);
 }
 function renderCurrent(currentData) {
-  currentData.html = ``;
+  currentData.innerHTML = ``;
   const currentCard = document.createElement("div");
   currentCard.innerHTML = `<p id="city-heading"> ${new Date(
     currentData.list[0].dt * 1000
@@ -80,15 +81,15 @@ function pastCity(cityName) {
   listEl.textContent = cityName;
   listEl.classList.add("list-group-item");
   listEl.setAttribute("data-value", cityName);
-  // document.querySelector(".list-group").appendChild(listEl);
+  document.querySelector(".list-group").appendChild(listEl);
 
   var buttonEl = document.createElement("button");
   buttonEl.classList.add("btn");
   buttonEl.setAttribute("type", "button");
   buttonEl.setAttribute("data-city", cityName);
   buttonEl.addEventListener("click", function () {
-    listEl.appendChild(buttonEl);
-    document.querySelector(".list-group").appendChild(listEl);
+    listEl.append(buttonEl);
+    document.querySelector(".list-group").append(listEl);
   });
 
   // var listEl = $("<li>" + pc() + "</li>");
