@@ -20,10 +20,14 @@ function fetchForecast(city) {
       return response.json();
     })
     .then((response) => renderForecast(response));
+
   // this.futureWeather(data));
   // $("#Temp0").html(response.main.temp);
   //console.log(response.main.temp);
 }
+
+const currentWeather = document.querySelector("#weather-display");
+
 const futureWeather = document.querySelector("#future-weather");
 
 function renderForecast(forecastData) {
@@ -40,13 +44,22 @@ function renderForecast(forecastData) {
                   }@2x.png"/>
                   <p>Temp: ${forecastData.list[i].temp.day}</p>
                   <p>Humidity: ${forecastData.list[i].humidity}</p>`;
-
     futureWeather.append(forecastCard);
   }
-
-  //append forecast card to future-weather
-  console.log(forecastData.list[1]);
+  renderCurrent(forecastData);
 }
+function renderCurrent(currentData) {
+  currentData.html = ``;
+  const currentCard = document.createElement("div");
+  currentCard.innerHTML = `<p>Temp: ${currentData.list[0].temp.day}</p>
+  <p>Wind: ${currentData.list[0].speed}</p>
+  <p>Humidity: ${currentData.list[0].humidity}</p>`;
+  currentWeather.append(currentCard);
+}
+
+//append forecast card to future-weather
+//console.log(forecastData.list[1]);
+//}
 
 //function futureWeather(data) {
 //const name = data;
