@@ -29,6 +29,7 @@ function fetchForecast(city) {
         console.log(savedCity);
         savedCity.push(response.city.name);
         localStorage.setItem("cityname", JSON.stringify(savedCity));
+        pastCity(response.city.name);
       }
       renderForecast(response);
     })
@@ -74,11 +75,17 @@ function renderCurrent(currentData) {
   currentWeather.append(currentCard);
 }
 
-function pastCity(pc) {
-  var listEl = $("<li>" + pc() + "</li>");
-  $(listEl).attr("class", "list-group-item");
-  $(listEl).attr("data-value", pc());
-  $(".list-group").append(listEl);
+function pastCity(cityName) {
+  var listEl = document.createElement("li");
+  listEl.textContent = cityName;
+  listEl.classList.add("list-group-item");
+  listEl.setAttribute("data-value", cityName);
+  document.querySelector(".list-group").appendChild(listEl);
+
+  // var listEl = $("<li>" + pc() + "</li>");
+  // $(listEl).attr("class", "list-group-item");
+  // $(listEl).attr("data-value", pc());
+  // $(".list-group").append(listEl);
 }
 
 //append forecast card to future-weather
@@ -95,4 +102,4 @@ function pastCity(pc) {
 //}
 //futureWeather();
 
-$("#search-button").on("click", fetchForecast);
+$("#search-button").on("click", fetchForecast());
