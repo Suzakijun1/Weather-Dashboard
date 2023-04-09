@@ -42,8 +42,9 @@ function renderForecast(forecastData) {
                   <img src="https://openweathermap.org/img/wn/${
                     forecastData.list[i].weather[0].icon
                   }@2x.png"/>
-                  <p>Temp: ${forecastData.list[i].temp.day}</p>
-                  <p>Humidity: ${forecastData.list[i].humidity}</p>`;
+                  <p>Temp: ${forecastData.list[i].temp.day}&#8457</p>
+                  <p>Wind: ${forecastData.list[i].speed}MPH</p>
+                  <p>Humidity: ${forecastData.list[i].humidity}%</p>`;
     futureWeather.append(forecastCard);
   }
   renderCurrent(forecastData);
@@ -51,9 +52,12 @@ function renderForecast(forecastData) {
 function renderCurrent(currentData) {
   currentData.html = ``;
   const currentCard = document.createElement("div");
-  currentCard.innerHTML = `<p>Temp: ${currentData.list[0].temp.day}</p>
-  <p>Wind: ${currentData.list[0].speed}</p>
-  <p>Humidity: ${currentData.list[0].humidity}</p>`;
+  currentCard.innerHTML = `<p id="city-heading"> ${new Date(
+    currentData.list[0].dt * 1000
+  ).toLocaleDateString()}</p>
+  <p>Temp: ${currentData.list[0].temp.day}&#8457</p>
+  <p>Wind: ${currentData.list[0].speed}MPH</p>
+  <p>Humidity: ${currentData.list[0].humidity}%</p>`;
   currentWeather.append(currentCard);
 }
 

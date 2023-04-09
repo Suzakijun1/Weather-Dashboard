@@ -26,3 +26,8 @@ main{
     display:flex;
     flex-wrap: wrap;
 }
+
+#city-heading{
+    font: bolder;
+    font-size: 20px;
+}
