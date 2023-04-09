@@ -25,14 +25,16 @@ function fetchForecast(city) {
         return response.json();
       }
     })
+    //retrieve list of previous saved cities and updates array
     .then((response) => {
       if (response.cod == 200) {
+        //cod200 indicates that the api request was successful
         savedCity = JSON.parse(localStorage.getItem("cityname")) || [];
         console.log(savedCity);
         savedCity.push(response.city.name);
         localStorage.setItem("cityname", JSON.stringify(savedCity));
         pastCity(response.city.name);
-      }
+      } //checks if the city name is already stored in "savedCity" array
       if (savedCity.indexOf(response.city.name) === -1) {
         savedCity.push(response.city.name);
         localStorage.setItem("cityname", JSON.stringify(savedCity));
@@ -47,6 +49,7 @@ const currentWeather = document.querySelector("#weather-display");
 
 const futureWeather = document.querySelector("#future-weather");
 
+// 5 day forecast function
 function renderForecast(forecastData) {
   futureWeather.innerHTML = ``;
   for (var i = 1; i <= 5; i++) {
@@ -65,7 +68,7 @@ function renderForecast(forecastData) {
     futureWeather.append(forecastCard);
   }
   renderCurrent(forecastData);
-}
+} //current weather function
 function renderCurrent(currentData) {
   currentData.innerHTML = ``;
   const currentCard = document.createElement("div");
@@ -77,41 +80,25 @@ function renderCurrent(currentData) {
   <p>Humidity: ${currentData.list[0].humidity}%</p>`;
   currentWeather.append(currentCard);
 }
-
+//creates past cities history list
 function pastCity(cityName) {
   var listEl = document.createElement("li");
-  listEl.textContent = cityName;
-  listEl.classList.add("list-group-item");
+  listEl.classList.add("list-group-item-action");
   listEl.setAttribute("data-value", cityName);
   document.querySelector(".list-group").appendChild(listEl);
 
+  //applies a button to the cities
   var buttonEl = document.createElement("button");
-  buttonEl.classList.add("btn");
+  buttonEl.classList.add("btn", "btn-primary", "mt-2");
   buttonEl.setAttribute("type", "button");
   buttonEl.setAttribute("data-city", cityName);
   buttonEl.addEventListener("click", function () {
-    listEl.append(buttonEl);
-    document.querySelector(".list-group").append(listEl);
+    fetchForecast(cityName);
   });
+  buttonEl.textContent = cityName;
+  listEl.appendChild(buttonEl);
 
-  // var listEl = $("<li>" + pc() + "</li>");
-  // $(listEl).attr("class", "list-group-item");
-  // $(listEl).attr("data-value", pc());
-  // $(".list-group").append(listEl);
+  document.querySelector(".list-group").appendChild(listEl);
 }
-
-//append forecast card to future-weather
-//console.log(forecastData.list[1]);
-//}
-
-//function futureWeather(data) {
-//const name = data;
-//const { icon, description } = data.weather[0];
-//const temp = list[0].temp.day;
-//const speed = data.wind;
-// $("#Temp0").html(temp);
-// console.log("future weather");
-//}
-//futureWeather();
 
 $("#search-button").on("click", fetchForecast);
