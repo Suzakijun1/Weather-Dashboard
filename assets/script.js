@@ -1,5 +1,5 @@
 var requestUrl =
-  "https://api.openweathermap.org/data/2.5/forecast/daily?appid=3be2b2b6acc21e3760901d15acf91f72&q=Orlando";
+  "https://api.openweathermap.org/data/2.5/forecast/daily?appid=3be2b2b6acc21e3760901d15acf91f72&q=";
 
 var userInput = document.querySelector("#text-box");
 
@@ -10,7 +10,7 @@ var savedCity = [];
 
 function fetchForecast(city) {
   //will input "userInput" here when I get this working
-  var url = requestUrl + "&cnt=6&units=imperial";
+  var url = requestUrl + userInput + "&cnt=6&units=imperial";
 
   console.log(url);
   fetch(url)
@@ -80,7 +80,16 @@ function pastCity(cityName) {
   listEl.textContent = cityName;
   listEl.classList.add("list-group-item");
   listEl.setAttribute("data-value", cityName);
-  document.querySelector(".list-group").appendChild(listEl);
+  // document.querySelector(".list-group").appendChild(listEl);
+
+  var buttonEl = document.createElement("button");
+  buttonEl.classList.add("btn");
+  buttonEl.setAttribute("type", "button");
+  buttonEl.setAttribute("data-city", cityName);
+  buttonEl.addEventListener("click", function () {
+    listEl.appendChild(buttonEl);
+    document.querySelector(".list-group").appendChild(listEl);
+  });
 
   // var listEl = $("<li>" + pc() + "</li>");
   // $(listEl).attr("class", "list-group-item");
@@ -102,4 +111,4 @@ function pastCity(cityName) {
 //}
 //futureWeather();
 
-$("#search-button").on("click", fetchForecast());
+$("#search-button").on("click", fetchForecast);
