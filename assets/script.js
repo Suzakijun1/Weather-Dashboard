@@ -4,7 +4,7 @@ var requestUrl =
 var userInput = document.querySelector("#text-box");
 
 var city = "";
-var pastCity = [];
+var savedCity = [];
 
 // fetch(requestUrl).then(console.log(data));
 
@@ -23,7 +23,16 @@ function fetchForecast(city) {
         return response.json();
       }
     })
-    .then((response) => renderForecast(response));
+    .then((response) => {
+      if (response.cod == 200) {
+        savedCity = JSON.parse(localStorage.getItem("cityname")) || [];
+        console.log(savedCity);
+        savedCity.push(response.city.name);
+        localStorage.setItem("cityname", JSON.stringify(savedCity));
+      }
+      renderForecast(response);
+    })
+    .catch((error) => console.log(error));
 
   // this.futureWeather(data));
   // $("#Temp0").html(response.main.temp);
@@ -63,11 +72,6 @@ function renderCurrent(currentData) {
   <p>Wind: ${currentData.list[0].speed}MPH</p>
   <p>Humidity: ${currentData.list[0].humidity}%</p>`;
   currentWeather.append(currentCard);
-}
-
-if (response.cod == 200) {
-  pastCity = JSON.parse(localstorage.getItem("cityname"));
-  console.log(pastCity);
 }
 
 function pastCity(pc) {
