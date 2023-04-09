@@ -3,6 +3,9 @@ var requestUrl =
 
 var userInput = document.querySelector("#text-box");
 
+var city = "";
+var pastCity = [];
+
 // fetch(requestUrl).then(console.log(data));
 
 function fetchForecast(city) {
@@ -15,9 +18,10 @@ function fetchForecast(city) {
       if (!response.ok) {
         console.log(response);
         alert("invalid location");
+      } else {
+        console.log(response);
+        return response.json();
       }
-      console.log(response);
-      return response.json();
     })
     .then((response) => renderForecast(response));
 
@@ -59,6 +63,18 @@ function renderCurrent(currentData) {
   <p>Wind: ${currentData.list[0].speed}MPH</p>
   <p>Humidity: ${currentData.list[0].humidity}%</p>`;
   currentWeather.append(currentCard);
+}
+
+if (response.cod == 200) {
+  pastCity = JSON.parse(localstorage.getItem("cityname"));
+  console.log(pastCity);
+}
+
+function pastCity(pc) {
+  var listEl = $("<li>" + pc() + "</li>");
+  $(listEl).attr("class", "list-group-item");
+  $(listEl).attr("data-value", pc());
+  $(".list-group").append(listEl);
 }
 
 //append forecast card to future-weather
