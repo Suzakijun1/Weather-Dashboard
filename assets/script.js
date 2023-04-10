@@ -6,8 +6,6 @@ var userInput = document.querySelector("#text-box");
 var city = "";
 var savedCity = [];
 
-// fetch(requestUrl).then(console.log(data));
-
 function fetchForecast(city) {
   //will input "userInput" here when I get this working
   var url = requestUrl + userInput.value + "&cnt=6&units=imperial";
@@ -75,7 +73,9 @@ function renderCurrent(currentData) {
   const currentCard = document.createElement("div");
   currentCard.innerHTML = `<p id="city-heading">${userInput.value} - ${new Date(
     currentData.list[0].dt * 1000
-  ).toLocaleDateString()}</p>
+  ).toLocaleDateString()} <img src="https://openweathermap.org/img/wn/${
+    currentData.list[0].weather[0].icon
+  }@2x.png"/></p>
   <p>Temp: ${currentData.list[0].temp.day}&#8457</p>
   <p>Wind: ${currentData.list[0].speed}MPH</p>
   <p>Humidity: ${currentData.list[0].humidity}%</p>`;
