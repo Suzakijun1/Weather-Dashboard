@@ -44,3 +44,12 @@ main{
 #text-box {
     width: 70%;
 }
+
+#future-weather {
+    color: white;
+    margin-right: 0.75rem;
+}
+.forecast-card {
+    background-color: rgb(5, 5, 116);
+    padding-left:10px;
+  }

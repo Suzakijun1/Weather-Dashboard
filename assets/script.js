@@ -55,6 +55,7 @@ function renderForecast(forecastData) {
   for (var i = 1; i <= 5; i++) {
     //create a div 'forecastCard'
     const forecastCard = document.createElement("div");
+    forecastCard.classList.add("forecast-card"); // add margin to bottom
     forecastCard.innerHTML = `<div class = "col-sm-1 forecast">
                   <p id="date0">${new Date(
                     forecastData.list[i].dt * 1000
@@ -72,7 +73,7 @@ function renderForecast(forecastData) {
 function renderCurrent(currentData) {
   currentData.innerHTML = ``;
   const currentCard = document.createElement("div");
-  currentCard.innerHTML = `<p id="city-heading"> ${new Date(
+  currentCard.innerHTML = `<p id="city-heading">${userInput.value} - ${new Date(
     currentData.list[0].dt * 1000
   ).toLocaleDateString()}</p>
   <p>Temp: ${currentData.list[0].temp.day}&#8457</p>
